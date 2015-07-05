@@ -1,0 +1,42 @@
+never property1 {    /* !([] ((count<30))) */
+T0_init:
+	do
+	:: atomic { (! (((count<30)))) -> assert(!(! (((count<30))))) }
+	:: (1) -> goto T0_init
+	od;
+accept_all:
+	skip
+}
+never property2 {    /* !([] ((! ((count>0))) || (((count>0)) U ((mode>1))))) */
+T0_init:
+	do
+	:: (! ((! ((count>0)))) && ! (((mode>1)))) -> goto accept_S4
+	:: atomic { (! ((! ((count>0)))) && ! (((count>0))) && ! (((mode>1)))) -> assert(!(! ((! ((count>0)))) && ! (((count>0))) && ! (((mode>1))))) }
+	:: (1) -> goto T0_init
+	od;
+accept_S4:
+	do
+	:: (! (((mode>1)))) -> goto accept_S4
+	:: atomic { (! (((count>0))) && ! (((mode>1)))) -> assert(!(! (((count>0))) && ! (((mode>1))))) }
+	od;
+accept_all:
+	skip
+}
+never property3 {    /* !([] ((! ((count>0))) || (<> ((count==0))))) */
+T0_init:
+	do
+	:: (! ((! ((count>0)))) && ! (((count==0)))) -> goto accept_S4
+	:: (1) -> goto T0_init
+	od;
+accept_S4:
+	do
+	:: (! (((count==0)))) -> goto accept_S4
+	od;
+}
+never property4 {    /* !(<> ((mode==3))) */
+accept_init:
+T0_init:
+	do
+	:: (! (((mode==3)))) -> goto T0_init
+	od;
+}
