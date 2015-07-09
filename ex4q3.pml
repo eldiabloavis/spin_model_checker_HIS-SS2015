@@ -6,6 +6,7 @@ chan channel51 = [1] of {int,bool};
 
 bool elected = false;
 
+
 active proctype process1()
 {
  bool elect;
@@ -51,7 +52,7 @@ active proctype process1()
 	    channel12 ! d;
 
 	:: else ->
-	    channel12 ! max,true;break;
+	    channel12 ! max,true;//break;
       fi;
     od;
 }
@@ -99,7 +100,7 @@ active proctype process2()
 	    channel23 ! d;
 
 	:: else ->
-	    channel23 ! max,true;break;
+	    channel23 ! max,true;//break;
       fi;
     od;
 }
@@ -147,7 +148,7 @@ active proctype process3()
 	    channel34 ! d;
 
 	:: else ->
-	    channel34 ! max,true;break;
+	    channel34 ! max,true;//break;
       fi;
     od;
 }
@@ -195,7 +196,7 @@ active proctype process4()
 	    channel45 ! d;
 
 	:: else ->
-	    channel45 ! max,true;break;
+	    channel45 ! max,true;//break;
       fi;
     od;
 }
@@ -243,7 +244,7 @@ active proctype process5()
 	    channel51 ! d;
 
 	:: else ->
-	    channel51 ! max,true;break;
+	    channel51 ! max,true;//break;
       fi;
     od;
 }
